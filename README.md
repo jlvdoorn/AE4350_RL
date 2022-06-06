@@ -20,6 +20,7 @@ Work in Progress
 ## Ideas
 ### Action space
 1. MultiBinary
+
 2D - There are three thrusters (left, center, right) that can have either no or full thrust.
 ```action_space = MultiBinary(3)```
 
@@ -27,6 +28,7 @@ Work in Progress
 ```action_space = MultiBinary(9)```
 
 2. Box
+
 2D - There are three thrusters (left, center, right) that can have a range of thrust from 0.0 (0%) to 1.0 (100%).
 ```action_space = Box(low=0.0, high=1.0, shape=(3,), dtype=np.float32)```
 
@@ -35,9 +37,11 @@ Work in Progress
 
 ### Observation space
 1. 2-Dimensional
+
 A 2D 'box' with origin 0.0, ranging from -5.0 to +5.0 on x and y axes.
 ```observation_space = Box(low=-5.0, high=5.0, shape=(2,), dtype=np.float32)```
 
 2. 3-Dimensional
+
 A 3D 'box' with origin 0.0, ranging from -5.0 to +5.0 on x, y and z axes.
 ```observation_space = Box(low=-5.0, high=5.0, shape=(3,), dtype=np.float32)```
