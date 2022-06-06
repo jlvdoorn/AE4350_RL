@@ -25,6 +25,7 @@ Work in Progress
 
 ```action_space = MultiBinary(3)```
 
+
 3D - There are nine thrusters (center, 8 tusters around center) that can have either no or full thrust.
 
 ```action_space = MultiBinary(9)```
@@ -34,6 +35,7 @@ Work in Progress
 2D - There are three thrusters (left, center, right) that can have a range of thrust from 0.0 (0%) to 1.0 (100%).
 
 ```action_space = Box(low=0.0, high=1.0, shape=(3,), dtype=np.float32)```
+
 
 3D - There are nine thrusters (center, 8 thrusters around center) that can have a range of thrust from 0.0 (0%) to 1.0 (100%).
 
