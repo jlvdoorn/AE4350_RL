@@ -7,9 +7,9 @@ main.py is the main file
 test.py is a test file for creating an new gym environment
 
 ## Virtual Environment
-Create venv: ```python -m venv .env```
+Create venv: ```conda create -n myvenv```
 
-Activate: ```./env/Scripts/activate```
+Activate: ```conda activate myvenv```
 
 Deactivate: ```deactive```
 
