@@ -39,7 +39,7 @@ Work in Progress
 
 3D - There are nine thrusters (center, 8 thrusters around center) that can have a range of thrust from 0.0 (0%) to 1.0 (100%).
 
-```action_space = Box(low=0.0, high=1.0, shape=(8,), dtype=np.float32)```
+```action_space = Box(low=0.0, high=1.0, shape=(9,), dtype=np.float32)```
 
 ### Observation space
 #### 1. 2-Dimensional
