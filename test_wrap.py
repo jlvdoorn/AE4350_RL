@@ -14,32 +14,34 @@ import numpy as np
 # Current   Action    Space: Box([ 0.5  5.0 (2,) float32])
 
 # Print env info
-def printEnvInfo(env):
-    print('======= Env Info =======')
-    print('Name: {}'.format(env.unwrapped))
+def printEnvInfo(env, wrapped):
+    if wrapped == False:
+        print('======= Env Info =======')
+    elif wrapped == True: 
+        print('=== Wrapped Env Info ===')
+    print('Name: {}'.format(env.spec.name))
     print("Observation space: {}".format(env.observation_space))
     print("Action space: {}".format(env.action_space))
     print("Reward range: {}".format(env.reward_range))
     print("========================")
 
-# Action Wrapper
+# Action Wrapper --> From box(-1, 1, (2,), float32) to box(0, 1, (3,), float32)
 class myActionWrapper(gym.ActionWrapper):
-    def __init__(self, env, disc_to_cont):
+    def __init__(self, env):
         super().__init__(env)
-        self.disc_to_cont = disc_to_cont
-        self._action_space = Discrete(len(disc_to_cont))
+        self._action_space = Box(0, 1, (3,), np.float32)
     
-    def action(self, act):
-        return self.disc_to_cont[act]
+    def action(self):
+        pass
 
-# Observation Wrapper
+# Observation Wrapper --> From box(array(8), array(8), (8,), float32) to box(array(8), array(8), (8,), float32)
 class myObservationWrapper(gym.ObservationWrapper):
     def __init__(self, env):
         super().__init__(env)
-        self._observation_space = Box(low=-np.inf, high=+np.inf, shape=(2,), dtype=np.float32)
+        self._observation_space = Box(low=-np.inf, high=+np.inf, shape=(8,), dtype=np.float32)
 
-    def observation(self, obs):
-        return obs["target"] - obs["agent"]
+    def observation(self):
+        pass
 
 # Main function of program
 if __name__ == "__main__":
@@ -53,9 +55,20 @@ if __name__ == "__main__":
     )
     base_env.reset()
 
-    printEnvInfo(base_env)
+    printEnvInfo(base_env, False)
 
-    actionWrapped_env = myActionWrapper(base_env, [np.array([1,0])],[np.array([-1,0])],[np.array([0,1])],[np.array([0,-1])])
-    wrapped_env = myObservationWrapper(actionWrapped_env)
+    actionWrapped_env = RescaleAction(base_env, min_action=0, max_action=1)
+    wrapped_env = actionWrapped_env #myObservationWrapper(actionWrapped_env)
 
-    printEnvInfo(wrapped_env)
+    printEnvInfo(wrapped_env, True)
+
+    observation, info = wrapped_env.reset(seed=42, return_info=True)
+    for _ in range(1000):
+        action = wrapped_env.action_space.sample()
+        observation, reward, done, info = wrapped_env.step(action)
+        wrapped_env.render(mode='human')
+
+        if done:
+            observation, info = wrapped_env.reset(return_info=True)
+
+    wrapped_env.close()

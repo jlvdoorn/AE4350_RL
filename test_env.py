@@ -10,7 +10,7 @@ from typing import Optional
 # from gym.utils.renderer import Renderer
 
 class Falcon9Env(gym.Env):
-    metadata = {"render_modes": ["human"], "render_fps": 10}
+    metadata = {"render_modes": ["human"], "render_fps": 50}
 
     def __init__(self, render_mode: Optional[str] = None):
         assert render_mode is None or render_mode in self.metadata["render_modes"]
