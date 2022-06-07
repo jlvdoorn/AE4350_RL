@@ -6,7 +6,9 @@ This is a reinforcement learning model for the control of a simplified [falcon 9
 
 ```test_.py``` is a test file for creating an new gym environment
 
-```test_ll.py``` is a test file for creating a wrapper around the LunarLander environment
+````test_ll.py``` is a test file for creating an instance of the LunarLander environment
+
+```test_wrap.py``` is a test file for creating a wrapper around the LunarLander environment
 
 ## Virtual Environment
 Create venv: ```conda create -n myvenv```
