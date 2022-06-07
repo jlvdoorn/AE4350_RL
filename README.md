@@ -2,9 +2,11 @@
 This is a reinforcement learning model for the control of a simplified [falcon 9](https://www.spaceflightinsider.com/hangar/falcon-9) rocket of SpaceX.
 
 ## Info
-main.py is the main file
+```main.py``` is the main file
 
-test.py is a test file for creating an new gym environment
+```test_.py``` is a test file for creating an new gym environment
+
+```test_ll.py``` is a test file for creating a wrapper around the LunarLander environment
 
 ## Virtual Environment
 Create venv: ```conda create -n myvenv```
